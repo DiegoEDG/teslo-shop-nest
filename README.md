@@ -9,6 +9,15 @@
 ```bash
 $ yarn install
 ```
+<br>
+
+## App Set Up
+<br>
+
+Use the **.env.temple** file to configure the environment variables in order to run the application successfully
+
+<br>
+<br>
 
 ## Running the app
 
