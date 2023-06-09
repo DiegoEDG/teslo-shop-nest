@@ -1,4 +1,5 @@
 import {
+  IsArray,
   IsIn,
   IsInt,
   IsNumber,
@@ -30,4 +31,21 @@ export class CreateProductDto {
 
   @IsIn(['man', 'woman', 'kid', 'unisex'])
   gender: string;
+
+  @IsIn(['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'])
+  sizes?: string[];
+
+  @IsString()
+  @IsOptional()
+  type?: string;
+
+  @IsString({ each: true })
+  @IsArray()
+  @IsOptional()
+  tags?: string[];
+
+  @IsString({ each: true })
+  @IsArray()
+  @IsOptional()
+  images?: string[];
 }

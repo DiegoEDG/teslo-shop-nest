@@ -1,8 +1,10 @@
+import { ProductImage } from './product-image.entity';
 import {
   BeforeInsert,
   BeforeUpdate,
   Column,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -38,6 +40,20 @@ export class Product {
   @Column('text')
   gender: string;
 
+  @Column('text')
+  type: string;
+
+  @Column('text', { array: true })
+  tags: string[];
+
+  @Column('text', { array: true })
+  sizes: string[];
+
+  @OneToMany(() => ProductImage, (productImage) => productImage.product, {
+    cascade: true,
+  })
+  images: ProductImage[];
+
   @BeforeInsert()
   @BeforeUpdate()
   createSlug() {
@@ -46,8 +62,4 @@ export class Product {
     }
     this.slug = this.slug.trim().toLowerCase().replaceAll(' ', '-');
   }
-
-  // size
-  // tag
-  // photos
 }
