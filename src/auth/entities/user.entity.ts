@@ -1,5 +1,11 @@
 import { IsString, Matches, MaxLength, MinLength } from 'class-validator';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BeforeInsert,
+  BeforeUpdate,
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class User {
@@ -23,4 +29,10 @@ export class User {
     default: ['user'],
   })
   roles: string[];
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  normailizeEmail() {
+    this.email = this.email.toLowerCase().trim();
+  }
 }
